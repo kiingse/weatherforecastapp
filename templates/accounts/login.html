@@ -1,0 +1,25 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+{% for message in messages %}
+    <div class="alert alert-info" role="alert">
+        {{message}}
+    </div>
+{% endfor %}
+
+<h2>Zaloguj się</h2>
+
+<div class="login-form">
+    <form method="POST" action="">   
+        {% csrf_token %}
+        <fieldset>
+            <legend>Logowanie</legend>
+            <p><label> Nazwa użytkownika: <input type="text" name="username"> {{username}} </label></p>
+            <p><label>Hasło: <input type="password" name = 'password'> {{password}} </label></p>
+            <input type="submit", name="submit">
+        </fieldset>
+    </form>
+</div>
+
+{% endblock %}

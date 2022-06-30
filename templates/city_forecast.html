@@ -1,0 +1,13 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<h3> Pogoda dla miasta: {{city_name_given}} </h3>
+<p> Obecna pogoda: <b>{{weather}} </b></p>
+<p> Opis pogody: <b>{{weather_description}} </b></p>
+<p> Aktualna temperatura: <b>{{current_temperature}} &#8451 </b></p>
+<p> Aktualna temperatura odczuwalna: <b>{{current_temperature_feels_like}} &#8451 </b></p>
+<p> Ciśnienie: <b>{{pressure}} hPa </b></p>
+<p> Wilgotność: <b>{{humidity}} % </b></p>
+<p> Prędkość wiatru: <b>{{wind_speed}} m/s </b></p>
+
+{% endblock %}

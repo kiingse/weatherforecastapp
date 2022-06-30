@@ -1,0 +1,39 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+{% for message in messages %}
+    <div class="alert alert-info" role="alert">
+        {{message}}
+    </div>
+{% endfor %}
+
+{% if user.is_authenticated %}
+    {% if no_of_cities > 0 %}
+        <h2>Twoje zapisane miasta: </h2>
+        <table>
+            <tr>
+                <th class="city-column">Miasto</th>
+            </tr>
+
+            {% for city in user_cities %}
+                <tr>
+                    <td class="city-column">{{city}}</td>
+                    <td class="city-table"><a href="{% url 'city_weather_forecast' city.city %}">
+                        <button type="button" class="btn btn-success">Podgląd</button></a></td>
+                    <td class="city-table"><a href="{% url 'delete_city' city.city %}" <button type="button" class="btn btn-danger">Usuń</button></a></td>
+
+                </tr>
+            {% endfor %}
+        </table>
+
+    {% else %}
+        <h2>Jak na razie nie dodałeś żadnego miasta.</h2>
+    {% endif %}
+
+{% else %}
+    <p>Zaloguj się aby dodać miasto i sprawdzić dla niego pogodę.</p>
+
+
+{% endif %}
+{% endblock content %}

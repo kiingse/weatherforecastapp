@@ -1,0 +1,12 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<p>Czy na pewno chcesz usunąć miejscowość {{city_to_delete}}?</p>
+<form action="{% url 'delete_city' city_to_delete %}" method="POST">
+    {% csrf_token %}
+    <a href="{% url 'home_page' %}" class="delete-button">Powrót</a>
+    
+    <input type="submit" name="Potwierdź" class="preview-button">
+</form>
+
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+{% for message in messages %}
+    <div class="alert alert-info" role="alert">
+        {{message}}
+    </div>
+{% endfor %}
+
+<h2>Zarejestruj się</h2>
+
+<div class="login-form">
+    <form method="POST" action="">
+        {% csrf_token %}
+        <fieldset>
+            <legend>Rejestracja</legend>
+            <p><label>Nazwa użytkownika: {{form.username}} </label></p>
+            <p><label>Adres e-mail: {{form.email}} </label></p>
+            <p><label>Hasło: <form type="password"> {{form.password1}} </form></label></p>
+            <p><label>Powtórz hasło: {{form.password2}} </label></p>
+            
+
+            <input type="submit", name='Klik'>
+        </fieldset>
+    </form>
+
+</div>
+{% endblock content %}

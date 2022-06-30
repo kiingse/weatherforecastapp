@@ -1,0 +1,62 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pl-PL">
+<head class="margin">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Aktualna pogoda</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <!--<link rel="stylesheet" href="{% static '/css/style.css' %}">-->
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="{% url 'home_page' %}"> <img src="{% static 'images/home-page-btn.png' %}"></a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          
+          {% if not user.is_authenticated %}
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{% url 'login' %}" class="navbar-item">Zaloguj się</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="{% url 'register' %}">Zarejestruj się</a>
+              </li>
+            {% else %}
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link active" href="{% url 'add_city' %}">Dodaj miasto</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'delete_user' %}">Usuń konto</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'logout' %}">Wyloguj</a>
+              </li>
+            {% endif %}
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+    <div class="user-welcome">
+        {% if user.is_authenticated %}
+            Cześć, <b> {{ user.username }} </b>
+        {% else %}
+            Cześć, chcielibyśmy Cię poznać. Jeżeli masz już konto, to <a href="{% url 'login' %}">zaloguj się</a>, w przeciwnym razie <a href="{% url 'register' %}">utwórz konto</a>.
+        {% endif %}
+    </div>
+
+    {% block content %}
+
+
+    {% endblock %}
+
+</body>
+
+</html>
